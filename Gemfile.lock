@@ -93,6 +93,3 @@ DEPENDENCIES
   rspec-rails (= 2.0.1)
   sqlite3-ruby (= 1.2.5)
   webrat (= 0.7.1)
-
-METADATA
-  version: 1.0.6
