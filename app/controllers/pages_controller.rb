@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  
   def home
     @title= "Home"
   end
@@ -12,6 +13,10 @@ class PagesController < ApplicationController
   end
     
   def help
-    @title= "Help"   
+    @title= "Help" 
+  end 
+  
+  def signup
+    @title= "Sign up"
   end
 end
