@@ -1,22 +1,19 @@
 class PagesController < ApplicationController
-  
+
   def home
-    @title= "Home"
+    @title = "Home"
+    @micropost = Micropost.new if signed_in?
   end
 
   def contact
-    @title= "Contact" 
+    @title = "Contact"
   end
-
-  def about
-    @title= "About"
-  end
-    
-  def help
-    @title= "Help" 
-  end 
   
-  def signup
-    @title= "Sign up"
+  def about
+    @title = "About"
+  end
+  
+  def help
+    @title = "Help"
   end
 end
