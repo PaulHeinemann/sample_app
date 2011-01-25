@@ -22,10 +22,10 @@ class User < ActiveRecord::Base
                            :foreign_key => "follower_id"
   has_many :reverse_relationships, :dependent => :destroy,
                                    :foreign_key => "followed_id",
-                                   :class_name =>"Relationship"
+                                   :class_name => "Relationship"
   has_many :following, :through => :relationships, :source => :followed
   has_many :followers, :through => :reverse_relationships,
-                       :source  =>:follower
+                       :source  => :follower
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   end
   
   def feed
-    Micropost.where("user_id = ?", id)
+    Micropost.from_users_followed_by(self)
   end
   
   def following?(followed)
@@ -55,11 +55,11 @@ class User < ActiveRecord::Base
   def follow!(followed)
     relationships.create!(:followed_id => followed.id)
   end
-
+  
   def unfollow!(followed)
     relationships.find_by_followed_id(followed).destroy
   end
-  
+
   class << self
     def authenticate(email, submitted_password)
       user = find_by_email(email)
